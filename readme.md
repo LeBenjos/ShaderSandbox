@@ -16,3 +16,9 @@ https://shader-sandbox-frontend.vercel.app/
 ### Dependencies :
 - Typescript
 - Express
+
+## Devlog
+
+- Create a repo git
+- Init frontend and backend app
+- CI/CD frontend
