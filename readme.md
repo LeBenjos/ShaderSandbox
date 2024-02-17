@@ -1,25 +1,30 @@
-# ShaderSnadbox
+# ShaderSandbox
 
 
 
-## FrontEnd :
+## Frontend :
 https://shader-sandbox-frontend.vercel.app/
 
-### Dependencies :
+### Dépendances :
 - Vite
 - Typescript
 - React
 - Three
 
-## BackEnd :
+## Backend :
 
-### Dependencies :
+### Dépendances :
 - Typescript
 - Express
 
 ## Devlog
 
-### Saturday 17/02
-- Create a repo git
-- Init frontend and backend app
-- CI/CD frontend
+### Mardi 13/02
+- Maquette Figma
+
+### Samedi 17/02
+- Initialisation du mono-repo git
+- Initialisation des app frontend & backend
+- Création du CI/CD frontend (inutile car vercel s'en occupe déjà 🙃)
+
+
