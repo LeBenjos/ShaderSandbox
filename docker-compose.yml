@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  database:
+    image: "shader-sandbox-database"
+    build:
+      context: ./backend
+      dockerfile: ./src/docker/Dockerfile.database
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: "shader_sandbox"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  backend:
+    image: "shader-sandbox-backend"
+    build:
+      context: ./backend
+      dockerfile: ./src/docker/Dockerfile.backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - database
+
+  frontend:
+    image: "shader-sandbox-frontend"
+    build:
+      context: ./frontend
+      dockerfile: ./src/docker/Dockerfile.frontend
+    ports:
+      - "4321:4321"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:
