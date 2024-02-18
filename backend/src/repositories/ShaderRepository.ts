@@ -5,6 +5,14 @@ import { IDatabase, IShaderTable } from "../constants/Types/DatabaseInterface.ts
 export default class ShaderRepository<T extends keyof IDatabase> {
     private _type = TableName.SHADER;
 
+    public async getPasswordById(id: number): Promise<{ password: string }[]> {
+        const result = await db.selectFrom(this._type)
+            .select('password')
+            .where('id', '=', id)
+            .execute()
+        return result;
+    }
+
     public async selectData(): Promise<IDatabase[T][]> {
         return await (db.selectFrom(this._type).selectAll().execute() as unknown) as IDatabase[T][];
     }
@@ -27,7 +35,8 @@ export default class ShaderRepository<T extends keyof IDatabase> {
         return result.id;
     }
 
-    public async updateDataById(id: number, password: string, updatedData: IShaderTable): Promise<bigint> {
+    //
+    public async updateDataById(id: number, updatedData: IShaderTable): Promise<bigint> {
         const result = await db.updateTable(this._type)
             .set({
                 id: updatedData.id,
@@ -39,14 +48,15 @@ export default class ShaderRepository<T extends keyof IDatabase> {
                 updated_at: updatedData.updated_at
             })
             .where('id', '=', id)
-            .where('password', '=', password)
             .executeTakeFirst();
 
         return result.numUpdatedRows;
     }
 
-    public async deleteDataById(id: number, password: string): Promise<bigint> {
-        const result = await db.deleteFrom(this._type).where('id', '=', id).where('password', '=', password).executeTakeFirst()
+    public async deleteDataById(id: number): Promise<bigint> {
+        const result = await db.deleteFrom(this._type)
+            .where('id', '=', id)
+            .executeTakeFirst()
         return result.numDeletedRows;
     }
 

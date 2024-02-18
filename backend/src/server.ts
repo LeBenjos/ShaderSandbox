@@ -1,4 +1,3 @@
-// import cors from 'cors';
 import express, { Application } from 'express';
 import credentialValidationMiddleware from './middlewares/credentialValidationMiddleware.ts';
 import idValidationMiddleware from './middlewares/idValidationMiddleware.ts';
@@ -10,7 +9,6 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-// app.use(cors());
 app.use(serverCheckMiddleware);
 
 app.post('/shaders', credentialValidationMiddleware);

@@ -8,7 +8,7 @@ import { MethodName } from "../constants/MethodName.ts";
 export default async function credentialValidationMiddleware(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
         if ((req.method === MethodName.POST)) {
-            if (!req.body.updateShader) throw new CustomError(ErrorMessages.INVALID_DATA, HttpStatus.BAD_REQUEST);
+            if (!req.body.createShader) throw new CustomError(ErrorMessages.INVALID_DATA, HttpStatus.BAD_REQUEST);
             const { title, password, imageUrl, author, setting }: { title: string, imageUrl: string, author: string, password: string, setting: { s1: number, s2: number, s3: number } } = req.body.updateShader;
             if (!title || !password || !imageUrl || !author || !setting) throw new CustomError(ErrorMessages.INVALID_DATA, HttpStatus.BAD_REQUEST);
 
