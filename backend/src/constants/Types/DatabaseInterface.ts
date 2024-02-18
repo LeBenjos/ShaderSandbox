@@ -12,9 +12,9 @@ export interface IShaderTable {
 
 export interface ISettingTable {
     shader_id: number;
-    s1: string;
-    s2: string;
-    s3: string;
+    s1: number;
+    s2: number;
+    s3: number;
 }
 
 export interface IDatabase {

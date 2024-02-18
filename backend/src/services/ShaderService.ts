@@ -1,3 +1,4 @@
+import CustomError from "../components/CustomeError.ts";
 import { IShaderTable } from "../constants/Types/DatabaseInterface.ts";
 import Shader from "../models/Shader.ts";
 import ShaderRepository from "../repositories/ShaderRepository.ts";
@@ -55,15 +56,31 @@ export default class ShaderService {
 
     //#region UPDATE
     //
+    public static async UpdateShaderById(id: number, password: string, updateShader: Shader): Promise<boolean | CustomError> {
+        let isUpdated: bigint = BigInt(0);
+
+        const currentShaderData = (await this._ShaderRepository.getDataById(id))[0];
+        const updatedData: IShaderTable = {
+            id: (currentShaderData as IShaderTable).id,
+            title: updateShader.title,
+            password: (currentShaderData as IShaderTable).password,
+            imageUrl: updateShader.imageUrl,
+            author: updateShader.author,
+            created_at: (currentShaderData as IShaderTable).created_at,
+            updated_at: new Date(),
+        }
+
+        isUpdated = await this._ShaderRepository.updateDataById(id, password, updatedData);
+
+        return isUpdated > BigInt(0);
+    }
     //
     //#endregion
 
     //#region DELETE
     //
     public static async DeleteShaderById(id: number, password: string): Promise<boolean> {
-        let isDeleted: bigint = BigInt(0);
-        if (password) isDeleted = await this._ShaderRepository.deleteDataById(id, password);
-
+        const isDeleted = await this._ShaderRepository.deleteDataById(id, password);
         return isDeleted > BigInt(0);
     }
     //

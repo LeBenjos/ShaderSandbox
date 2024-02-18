@@ -1,6 +1,15 @@
 import { NextFunction, Request, Response } from "express";
+import CustomError from "../components/CustomeError.ts";
+import { ErrorMessages } from "../constants/ErrorMessages.ts";
+import { HttpStatus } from "../constants/HttpStatus.ts";
 import ShaderService from "../services/ShaderService.ts";
 
 export default async function deleteShaderById(req: Request, res: Response, next: NextFunction): Promise<void> {
-    res.json(await ShaderService.DeleteShaderById(Number(req.params.id), req.body.password))
+    try {
+        const deletedData = await ShaderService.DeleteShaderById(Number(req.params.id), req.body.password);
+        if (!deletedData) throw new CustomError(ErrorMessages.UNAUTHORIZED, HttpStatus.UNAUTHORIZED);
+        res.json(deletedData);
+    } catch (e: unknown) {
+        next(e as CustomError);
+    }
 }
