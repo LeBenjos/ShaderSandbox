@@ -1,19 +1,19 @@
 import express, { Router } from "express";
-import deleteShaderById from "../controllers/deleteShaderById.ts";
-import getShaderById from "../controllers/getShaderById.ts";
-import postShader from "../controllers/postShader.ts";
-import selectShaders from "../controllers/selectShaders.ts";
-import updateShaderById from "../controllers/updateShaderById.ts";
+import deleteShaderController from "../controllers/deleteShaderController.ts";
+import getShaderController from "../controllers/getShaderController.ts";
+import postShaderController from "../controllers/postShaderController.ts";
+import selectShadersController from "../controllers/selectShadersController.ts";
+import updateShaderController from "../controllers/updateShaderController.ts";
 import welcom from "../controllers/welcom.ts";
 
 const router: Router = express.Router();
 
 router.get('/', welcom);
 
-router.get('/shaders', selectShaders);
-router.post('/shaders', postShader);
-router.get('/shaders/:id', getShaderById);
-router.put('/shaders/:id', updateShaderById);
-router.delete('/shaders/:id', deleteShaderById);
+router.get('/shaders', selectShadersController);
+router.post('/shaders', postShaderController);
+router.get('/shaders/:id', getShaderController);
+router.put('/shaders/:id', updateShaderController);
+router.delete('/shaders/:id', deleteShaderController);
 
 export default router;

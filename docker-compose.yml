@@ -5,7 +5,7 @@ services:
     image: "shader-sandbox-database"
     build:
       context: ./backend
-      dockerfile: ./src/docker/Dockerfile.database
+      dockerfile: ./src/configs/docker/Dockerfile.database
     ports:
       - "5432:5432"
     environment:
@@ -19,7 +19,7 @@ services:
     image: "shader-sandbox-backend"
     build:
       context: ./backend
-      dockerfile: ./src/docker/Dockerfile.backend
+      dockerfile: ./src/configs/docker/Dockerfile.backend
     ports:
       - "3000:3000"
     depends_on:

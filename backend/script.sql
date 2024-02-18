@@ -14,8 +14,7 @@ CREATE TABLE shader (
 );
 
 CREATE TABLE setting (
-    id SERIAL PRIMARY KEY,
-    shader_id INT UNIQUE NOT NULL,
+    shader_id INT PRIMARY KEY,
     s1 FLOAT NOT NULL,
     s2 FLOAT NOT NULL,
     s3 FLOAT NOT NULL,
