@@ -13,6 +13,7 @@ app.use(express.json());
 // app.use(cors());
 app.use(serverCheckMiddleware);
 
+app.post('/shaders', credentialValidationMiddleware);
 app.use('/shaders/:id', idValidationMiddleware);
 app.put('/shaders/:id', credentialValidationMiddleware);
 app.delete('/shaders/:id', credentialValidationMiddleware);

@@ -1,4 +1,3 @@
-import CustomError from "../components/CustomeError.ts";
 import { ISettingTable } from "../constants/Types/DatabaseInterface.ts";
 import Setting from "../models/Setting.ts";
 import Shader from "../models/Shader.ts";
@@ -9,23 +8,37 @@ export default class SettingService {
 
     //#region GET (id)
     //
-    public static async GetSettingById(id: number): Promise<Setting> {
+    public static async GetSettingById(id: number): Promise<Setting | null> {
         const data = (await this._SettingRepository.getDataById(id))[0];
 
-        const setting = new Setting(
-            Number((data as ISettingTable).s1),
-            Number((data as ISettingTable).s2),
-            Number((data as ISettingTable).s3)
-        );
+        if (data) {
+            const setting = new Setting(
+                Number((data as ISettingTable).s1),
+                Number((data as ISettingTable).s2),
+                Number((data as ISettingTable).s3)
+            );
 
-        return setting;
+
+            return setting;
+        }
+
+        return null;
+    }
+    //
+    //#endregion
+
+    //#region CREATE
+    //
+    public static async CreateSetting(createdData: ISettingTable): Promise<number> {
+        const isCreated = await this._SettingRepository.createData(createdData);
+        return isCreated;
     }
     //
     //#endregion
 
     //#region UPDATE
     //
-    public static async UpdateShaderById(id: number, updateShader: Shader): Promise<boolean | CustomError> {
+    public static async UpdateSettingById(id: number, updateShader: Shader): Promise<boolean> {
         let isUpdated: bigint = BigInt(0);
 
         const currentSettingData = (await this._SettingRepository.getDataById(id))[0];

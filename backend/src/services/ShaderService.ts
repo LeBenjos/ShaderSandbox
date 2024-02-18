@@ -51,14 +51,16 @@ export default class ShaderService {
 
     //#region CREATE
     //
+    public static async CreateShader(createdData: IShaderTable): Promise<number> {
+        const isCreated = await this._ShaderRepository.createData(createdData);
+        return isCreated;
+    }
     //
     //#endregion
 
     //#region UPDATE
     //
     public static async UpdateShaderById(id: number, password: string, updateShader: Shader): Promise<boolean | CustomError> {
-        let isUpdated: bigint = BigInt(0);
-
         const currentShaderData = (await this._ShaderRepository.getDataById(id))[0];
         const updatedData: IShaderTable = {
             id: (currentShaderData as IShaderTable).id,
@@ -70,7 +72,7 @@ export default class ShaderService {
             updated_at: new Date(),
         }
 
-        isUpdated = await this._ShaderRepository.updateDataById(id, password, updatedData);
+        const isUpdated = await this._ShaderRepository.updateDataById(id, password, updatedData);
 
         return isUpdated > BigInt(0);
     }
@@ -81,6 +83,11 @@ export default class ShaderService {
     //
     public static async DeleteShaderById(id: number, password: string): Promise<boolean> {
         const isDeleted = await this._ShaderRepository.deleteDataById(id, password);
+        return isDeleted > BigInt(0);
+    }
+
+    public static async AdminDeleteShader(id: number): Promise<boolean> {
+        const isDeleted = await this._ShaderRepository.deleteDataByIdForce(id);
         return isDeleted > BigInt(0);
     }
     //
