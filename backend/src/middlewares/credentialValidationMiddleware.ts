@@ -9,7 +9,8 @@ export default async function credentialValidationMiddleware(req: Request, res: 
     try {
         if ((req.method === MethodName.POST)) {
             if (!req.body.createShader) throw new CustomError(ErrorMessages.INVALID_DATA, HttpStatus.BAD_REQUEST);
-            const { title, password, imageUrl, author, setting }: { title: string, imageUrl: string, author: string, password: string, setting: { s1: number, s2: number, s3: number } } = req.body.updateShader;
+
+            const { title, password, imageUrl, author, setting }: { title: string, imageUrl: string, author: string, password: string, setting: { s1: number, s2: number, s3: number } } = req.body.createShader;
             if (!title || !password || !imageUrl || !author || !setting) throw new CustomError(ErrorMessages.INVALID_DATA, HttpStatus.BAD_REQUEST);
 
             const { s1, s2, s3 }: { s1: number, s2: number, s3: number } = setting;

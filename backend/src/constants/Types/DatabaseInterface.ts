@@ -4,7 +4,7 @@ export interface IShaderTable {
     id: Generated<number>;
     title: string;
     password: string;
-    imageUrl: string;
+    image_url: string;
     author: string;
     created_at: Date;
     updated_at: Date;

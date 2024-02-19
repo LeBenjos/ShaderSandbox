@@ -1,11 +1,12 @@
+import { HTMLAttributes, ReactElement } from "react";
 import { TextContent } from "../../constants/texts/TextContent.ts";
 
-export default function Footer() {
-    return (
-        <footer className="footer_sandbox">
-            <div className="text-body-blackShade1">
-                {TextContent.FOOTER_NAME}
-            </div>
-        </footer>
-    )
+type Props = HTMLAttributes<HTMLDivElement>;
+
+export default function Footer({ className, ...props }: Props): ReactElement<HTMLDivElement> {
+    return <footer className={`${className} footerSandbox`} {...props}>
+        <div className="text-body-blackShade1">
+            {TextContent.FOOTER_NAME}
+        </div>
+    </footer>
 }

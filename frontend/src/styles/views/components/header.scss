@@ -1,0 +1,28 @@
+.headerSandbox {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    >.headerLeft {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2vh;
+        flex-wrap: wrap;
+
+        >h1 {
+            >a {
+                color: $color-black-basic;
+                text-decoration: none;
+            }
+        }
+
+        >.headerNav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1vh;
+        }
+    }
+}

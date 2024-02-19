@@ -1,17 +1,14 @@
-import { Link } from "react-router-dom";
+import { ReactElement } from "react";
 import { PagePath } from "../constants/paths/PagePath.ts";
+import Footer from "./components/Footer.tsx";
+import Header from "./components/Header.tsx";
 
-export default function SandboxView() {
-    return (
-        <>
-            Sandbox
-            <br />
-            <Link to={PagePath.HOME}>
-                go to home
-            </Link>
-            <Link to={PagePath.LIBRARY}>
-                go to library
-            </Link>
-        </>
-    )
+export default function SandboxView(): ReactElement<HTMLDivElement> {
+    return <div>
+        <Header currentPage={PagePath.SANDBOX} />
+        <div className="sandboxContainer">
+
+        </div>
+        <Footer />
+    </div>
 }

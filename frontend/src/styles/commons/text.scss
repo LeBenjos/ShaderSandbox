@@ -1,5 +1,5 @@
 [class^="text-"] {
-    font-family: $JetBrainsMono, monospace;
+    font-family: $JetBrainsMono;
     font-weight: 400;
 }
 
@@ -8,11 +8,23 @@
 }
 
 [class*="-titleH2"] {
-    font-size: 4.1vh;
+    font-size: 4.5vh;
+}
+
+[class*="-titleH3"] {
+    font-size: 3.5vh;
+}
+
+[class*="-titleH4"] {
+    font-size: 2vh;
 }
 
 [class*="-body"] {
     font-size: 2vh;
+}
+
+[class*="-small"] {
+    font-size: 1.5vh;
 }
 
 [class*="-blackBasic"] {

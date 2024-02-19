@@ -4,10 +4,9 @@ import ShaderService from "../services/ShaderService.ts";
 
 export default async function postShaderController(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-        const createShaderData = await ShaderService.CreateShader(req.body.updateShader);
+        const createShaderData = await ShaderService.CreateShader(req.body.createShader);
         if (createShaderData) {
-            const creatSetting = { ...req.body.updateShader.setting, shader_id: createShaderData };
-            console.log(creatSetting);
+            const creatSetting = { ...req.body.createShader.setting, shader_id: createShaderData };
             await SettingService.CreateSetting(creatSetting);
         }
 

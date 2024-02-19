@@ -23,16 +23,16 @@ CREATE TABLE setting (
 
 --  FAKE DATA FOR TEST WITH DOCKER
 INSERT INTO shader (title, password, image_url, author) VALUES
-    ('Shader 1', 'password1', 'image_url1', 'Author 1'),
-    ('Shader 2', 'password2', 'image_url2', 'Author 2'),
-    ('Shader 3', 'password3', 'image_url3', 'Author 3'),
-    ('Shader 4', 'password4', 'image_url4', 'Author 4'),
-    ('Shader 5', 'password5', 'image_url5', 'Author 5'),
-    ('Shader 6', 'password6', 'image_url6', 'Author 6'),
-    ('Shader 7', 'password7', 'image_url7', 'Author 7'),
-    ('Shader 8', 'password8', 'image_url8', 'Author 8'),
-    ('Shader 9', 'password9', 'image_url9', 'Author 9'),
-    ('Shader 10', 'password10', 'image_url10', 'Author 10');
+    ('Mon Shader', 'n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg=', 'image_url1', 'Benjos'),
+    ('Best Shader', 'n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg=', 'image_url2', 'Recooord'),
+    ('Random Seed', 'n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg=', 'image_url3', 'SupT'),
+    ('Try make better', 'n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg=', 'image_url4', 'Zeroway'),
+    ('Super Shader', 'n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg=', 'image_url5', 'Alessandro'),
+    ('Frog Shader', 'n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg=', 'image_url6', 'Enzozo'),
+    ('My unique and best shader', 'n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg=', 'image_url7', 'LTOssian'),
+    ('BXXGIE WXXGIE', 'n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg=', 'image_url8', 'BXXGIMAN'),
+    ('Australia flag', 'n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg=', 'image_url9', 'Maxaille'),
+    ('Just Do It', 'n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg=', 'image_url10', 'Test');
 
 INSERT INTO setting (shader_id, s1, s2, s3) VALUES
     (1, 0.1, 0.2, 0.3),

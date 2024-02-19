@@ -23,10 +23,12 @@ export default class ShaderService {
             shaders.push(new Shader(
                 Number((shader as IShaderTable).id),
                 (shader as IShaderTable).title,
-                (shader as IShaderTable).imageUrl,
+                (shader as IShaderTable).image_url,
                 (shader as IShaderTable).author,
             ));
         });
+
+        console.log(shaders)
 
         return shaders;
     }
@@ -41,7 +43,7 @@ export default class ShaderService {
         const shader = new Shader(
             Number((data as IShaderTable).id),
             (data as IShaderTable).title,
-            (data as IShaderTable).imageUrl,
+            (data as IShaderTable).image_url,
             (data as IShaderTable).author
         );
 
@@ -54,6 +56,7 @@ export default class ShaderService {
     //
     public static async CreateShader(createdData: IShaderTable): Promise<number> {
         // TODO : MOVE IN FRONT
+        console.log(CryptoJS.SHA256('test').toString(CryptoJS.enc.Base64))
         createdData.password = CryptoJS.SHA256(createdData.password).toString(CryptoJS.enc.Base64);
         // END TODO
         const isCreated = await this._ShaderRepository.createData(createdData);
@@ -74,7 +77,7 @@ export default class ShaderService {
                 id: (currentShaderData as IShaderTable).id,
                 title: updateShader.title,
                 password: (currentShaderData as IShaderTable).password,
-                imageUrl: updateShader.imageUrl,
+                image_url: updateShader.imageUrl,
                 author: updateShader.author,
                 created_at: (currentShaderData as IShaderTable).created_at,
                 updated_at: new Date(),

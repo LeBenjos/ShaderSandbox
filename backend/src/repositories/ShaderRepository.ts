@@ -21,13 +21,13 @@ export default class ShaderRepository<T extends keyof IDatabase> {
         return ((await db.selectFrom(this._type).where('id', '=', id).selectAll().execute()) as unknown) as IDatabase[T][];
     }
 
-    public async createData(createdDate: IShaderTable): Promise<number> {
+    public async createData(createdData: IShaderTable): Promise<number> {
         const result = await db.insertInto(this._type)
             .values({
-                title: createdDate.title,
-                password: createdDate.password,
-                image_url: createdDate.imageUrl,
-                author: createdDate.author,
+                title: createdData.title,
+                password: createdData.password,
+                image_url: createdData.image_url,
+                author: createdData.author,
             })
             .returning('id')
             .executeTakeFirstOrThrow()
@@ -42,7 +42,7 @@ export default class ShaderRepository<T extends keyof IDatabase> {
                 id: updatedData.id,
                 title: updatedData.title,
                 password: updatedData.password,
-                image_url: updatedData.imageUrl,
+                image_url: updatedData.image_url,
                 author: updatedData.author,
                 created_at: updatedData.created_at,
                 updated_at: updatedData.updated_at

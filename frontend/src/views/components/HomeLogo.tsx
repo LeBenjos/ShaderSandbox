@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { DomEvent } from "../../constants/DomEvent.ts";
 
-export default function HomeLogo() {
+export default function HomeLogo(): ReactElement<SVGElement> {
 
     const [offsetX, setOffsetX] = useState<number>(4);
     const [offsetY, setOffsetY] = useState<number>(4);
