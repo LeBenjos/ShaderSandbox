@@ -67,17 +67,17 @@ export default class ShaderService {
 
     //#region UPDATE
     //
-    public static async UpdateShaderById(id: number, password: string, updateShader: Shader): Promise<boolean | CustomError> {
+    public static async UpdateShaderById(id: number, updateShader: Shader): Promise<boolean | CustomError> {
         let isUpdated: bigint = BigInt(0);
         const hashPassword = (await this._ShaderRepository.getPasswordById(id))[0].password;
 
-        if (CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64) === hashPassword) {
+        if (CryptoJS.SHA256(updateShader.password).toString(CryptoJS.enc.Base64) === hashPassword) {
             const currentShaderData = (await this._ShaderRepository.getDataById(id))[0];
             const updatedData: IShaderTable = {
                 id: (currentShaderData as IShaderTable).id,
                 title: updateShader.title,
                 password: (currentShaderData as IShaderTable).password,
-                image_url: updateShader.imageUrl,
+                image_url: updateShader.image_url,
                 author: updateShader.author,
                 created_at: (currentShaderData as IShaderTable).created_at,
                 updated_at: new Date(),

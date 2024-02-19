@@ -7,7 +7,7 @@ import ShaderService from "../services/ShaderService.ts";
 
 export default async function updateShaderController(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-        const updatedShaderData = await ShaderService.UpdateShaderById(Number(req.params.id), req.body.password, req.body.updateShader);
+        const updatedShaderData = await ShaderService.UpdateShaderById(Number(req.params.id), req.body.updateShader);
         if (!updatedShaderData) {
             throw new CustomError(ErrorMessages.UNAUTHORIZED, HttpStatus.UNAUTHORIZED);
         } else {

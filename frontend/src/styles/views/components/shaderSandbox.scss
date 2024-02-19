@@ -1,0 +1,11 @@
+#webgl {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    canvas {
+        height: 100% !important;
+        width: 100% !important;
+    }
+}

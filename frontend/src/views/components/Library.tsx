@@ -2,7 +2,7 @@ import { ReactElement, useEffect, useState } from "react";
 import Shader from "../../models/Shader.ts";
 import ShaderCard from "./ShaderCard.tsx";
 
-type DataType = { _id: number, _title: string, _imageUrl: string, _author: string, _setting: null }
+type DataType = { _id: number, _title: string, _image_url: string, _author: string, _setting: null }
 
 export default function Library({ search }: { search: string }): ReactElement<HTMLDivElement> {
     const [fetchedData, setFetchedData] = useState<Shader[]>([]);
@@ -11,25 +11,27 @@ export default function Library({ search }: { search: string }): ReactElement<HT
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:3000/shaders/');
-                if (!response.ok) {
-                    throw new Error('Error retrieving data');
-                }
-                const data = await response.json();
-                const clearData: Shader[] = [];
+                await fetch(`http://localhost:3000/shaders/`).then((response: Response) => {
+                    if (!response.ok) {
+                        throw new Error('Error retrieving data');
+                    }
+                    return response.json();
+                }).then((data: DataType[]) => {
+                    const clearData: Shader[] = [];
 
-                data.forEach((shader: DataType) => {
-                    clearData.push(new Shader(
-                        shader._id,
-                        shader._title,
-                        shader._imageUrl,
-                        shader._author,
-                        shader._setting,
-                    ))
+                    data.forEach((shader: DataType) => {
+                        clearData.push(new Shader(
+                            shader._id,
+                            shader._title,
+                            shader._image_url,
+                            shader._author,
+                            shader._setting,
+                        ))
+                    });
+
+                    setShader(clearData);
+                    setFetchedData(clearData);
                 });
-
-                setShader(clearData);
-                setFetchedData(clearData);
             } catch (error) {
                 console.error('Erreur:', error);
             }
