@@ -1,0 +1,48 @@
+[class^="text-"] {
+    font-family: $JetBrainsMono, monospace;
+    font-weight: 400;
+}
+
+[class*="-titleH1"] {
+    font-size: 7vh;
+}
+
+[class*="-titleH2"] {
+    font-size: 4.1vh;
+}
+
+[class*="-body"] {
+    font-size: 2vh;
+}
+
+[class*="-blackBasic"] {
+    color: $color-black-basic;
+}
+
+[class*="-blackShade1"] {
+    color: $color-black-shade1;
+}
+
+[class*="-blackShade2"] {
+    color: $color-black-shade2;
+}
+
+[class*="-white"] {
+    color: $color-white-basic;
+}
+
+[class*="-bold"] {
+    font-weight: 600;
+}
+
+[class*="-extraBold"] {
+    font-weight: 700;
+}
+
+[class*="-uppercase"] {
+    text-transform: uppercase;
+}
+
+[class*="-lowercase"] {
+    text-transform: lowercase;
+}

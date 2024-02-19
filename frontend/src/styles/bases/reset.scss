@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    background-color: $color-white-basic;
+    font-family: $JetBrainsMono, monospace;
+    color: $color-black-shade1;
+
+    #root {
+        width: 100%;
+        height: 100%;
+    }
+}
