@@ -1,6 +1,12 @@
 # ShaderSandbox
 
-
+TODO: 
+- [ ] Front error
+- [ ] Doc
+- [ ] Shader Img
+- [ ] PDF
+- [ ] Deploy backend
+- [ ] Hash mdp front
 
 ## Frontend :
 https://shader-sandbox-frontend.vercel.app/

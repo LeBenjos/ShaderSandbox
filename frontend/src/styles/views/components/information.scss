@@ -7,9 +7,29 @@
     gap: 2vh;
     height: 100%;
 
-    >h2 {
-        margin: 0;
+    .headerInformation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        h2 {
+            margin: 0;
+        }
+
+        .iconLink {
+            height: 100%;
+
+            &:hover {
+                background-color: tomato;
+
+                img {
+                    filter: invert(1);
+                }
+            }
+        }
     }
+
 
     >.information {
         display: flex;
@@ -19,6 +39,9 @@
         >input {
             width: 100%;
             padding: 1vh;
+            font-family: 'JetBrainsMono';
+            border-radius: 0.5vh;
+            border: 0.5px solid $color-black-basic;
         }
     }
 }

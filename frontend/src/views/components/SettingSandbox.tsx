@@ -11,7 +11,6 @@ type Props = {
 }
 
 export default function SettingSandbox({ s1, s2, s3, setS1, setS2, setS3 }: Props) {
-
     const s1Ref = useRef<HTMLInputElement>(null);
     const s2Ref = useRef<HTMLInputElement>(null);
     const s3Ref = useRef<HTMLInputElement>(null);
@@ -39,7 +38,9 @@ export default function SettingSandbox({ s1, s2, s3, setS1, setS2, setS3 }: Prop
     }, []);
 
     return <div className="settingSandbox">
-        <h2 className="text-titleH3-blackBasic-uppercase">{TextContent.SANDBOX_SETTING}</h2>
+        <div>
+            <h2 className="text-titleH3-blackBasic-uppercase">{TextContent.SANDBOX_SETTING}</h2>
+        </div>
         <div className="setting setting1">
             <label htmlFor="s1" className="text-body-blackShade1-uppercase">{TextContent.SANDBOX_SETTING_S1}</label>
             <input ref={s1Ref} id="s1" type="range" min="0" max="100" value={s1} onChange={handleS1Change} />

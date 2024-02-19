@@ -1,6 +1,8 @@
 import { ReactElement, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Method } from "../constants/Method.ts";
 import { PagePath } from "../constants/paths/PagePath.ts";
+import { TextContent } from "../constants/texts/TextContent.ts";
 import Setting from "../models/Setting.ts";
 import Shader from "../models/Shader.ts";
 import Footer from "./components/Footer.tsx";
@@ -59,16 +61,77 @@ export default function SandboxView(): ReactElement<HTMLDivElement> {
         }
     }, []);
 
-    useEffect(() => {
-        console.log(password)
-    }, [password]);
+    const handleCreate = async (): Promise<void> => {
+        await fetch(`http://localhost:3000/shaders/`, {
+            method: Method.POST,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "createShader": {
+                    "title": title,
+                    "password": password,
+                    "image_url": "TODO",
+                    "author": author,
+                    "setting": {
+                        "s1": s1,
+                        "s2": s2,
+                        "s3": s3
+                    }
+                }
+            })
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error('Erreur lors de la création');
+            }
+            console.log('Création réussie');
+        }).catch(error => console.error('Erreur :', error));
+    }
+
+    const handleUpdate = async (): Promise<void> => {
+        await fetch(`http://localhost:3000/shaders/${id}`, {
+            method: Method.PUT,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "updateShader": {
+                    "title": title,
+                    "password": password,
+                    "image_url": "TODO",
+                    "author": author,
+                    "setting": {
+                        "s1": s1,
+                        "s2": s2,
+                        "s3": s3
+                    }
+                }
+            })
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error('Erreur lors de la modification');
+            }
+            console.log('Modification réussie');
+        }).catch(error => console.error('Erreur :', error));
+    }
 
     return <div className="sandboxView">
         <Header currentPage={PagePath.SANDBOX} />
-        <div className="sandboxContainer">
-            <SettingSandbox s1={s1} s2={s2} s3={s3} setS1={setS1} setS2={setS2} setS3={setS3} />
-            <ThreePreview s1={s1} s2={s2} s3={s3} />
-            <InformationSandbox title={title} author={author} setTitle={setTitle} setAuthor={setAuthor} setPassword={setPassword} />
+        <div className="sandboxContainerMain">
+            <div className="sandboxContainer">
+                <SettingSandbox s1={s1} s2={s2} s3={s3} setS1={setS1} setS2={setS2} setS3={setS3} />
+                <ThreePreview s1={s1} s2={s2} s3={s3} />
+                <InformationSandbox title={title} password={password} author={author} setTitle={setTitle} setAuthor={setAuthor} setPassword={setPassword} />
+            </div>
+            <div>
+                {id ?
+                    <button onClick={handleUpdate} className="button text-small-blackShade1-uppercase">
+                        {TextContent.BUTTON_UPDATE}
+                    </button> :
+                    <button onClick={handleCreate} className="button text-small-blackShade1-uppercase">
+                        {TextContent.BUTTON_CREATE}
+                    </button>}
+            </div>
         </div>
         <Footer />
     </div>

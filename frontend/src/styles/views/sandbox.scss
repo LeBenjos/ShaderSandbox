@@ -7,11 +7,20 @@
     justify-content: space-between;
     overflow: hidden;
 
-    .sandboxContainer {
+    .sandboxContainerMain {
         width: 100%;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 2vh;
+
+        .sandboxContainer {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2vh;
+        }
     }
 }
