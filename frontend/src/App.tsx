@@ -12,6 +12,7 @@ export default function App(): JSX.Element {
         <Route path={PagePath.LIBRARY} element={<LibraryView />} />
         <Route path={PagePath.SANDBOX} element={<SandboxView />} >
           <Route path={PagePath.SANDBOX_ID} element={<SandboxView />} />
+          <Route path={PagePath.SANDBOX_ID_STATUS} element={<SandboxView />} />
         </Route>
       </Routes>
     </>

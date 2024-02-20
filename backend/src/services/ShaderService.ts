@@ -1,4 +1,3 @@
-import CryptoJS from 'crypto-js';
 import CustomError from "../components/CustomeError.ts";
 import { IShaderTable } from "../constants/Types/DatabaseInterface.ts";
 import Shader from "../models/Shader.ts";
@@ -56,8 +55,8 @@ export default class ShaderService {
     //
     public static async CreateShader(createdData: IShaderTable): Promise<number> {
         // TODO : MOVE IN FRONT
-        console.log(CryptoJS.SHA256('test').toString(CryptoJS.enc.Base64))
-        createdData.password = CryptoJS.SHA256(createdData.password).toString(CryptoJS.enc.Base64);
+        // console.log(CryptoJS.SHA256('test').toString(CryptoJS.enc.Base64))
+        // createdData.password = CryptoJS.SHA256(createdData.password).toString(CryptoJS.enc.Base64);
         // END TODO
         const isCreated = await this._ShaderRepository.createData(createdData);
         return isCreated;
@@ -71,7 +70,7 @@ export default class ShaderService {
         let isUpdated: bigint = BigInt(0);
         const hashPassword = (await this._ShaderRepository.getPasswordById(id))[0].password;
 
-        if (CryptoJS.SHA256(updateShader.password).toString(CryptoJS.enc.Base64) === hashPassword) {
+        if (updateShader.password === hashPassword) {
             const currentShaderData = (await this._ShaderRepository.getDataById(id))[0];
             const updatedData: IShaderTable = {
                 id: (currentShaderData as IShaderTable).id,
@@ -99,7 +98,7 @@ export default class ShaderService {
 
         const hashPassword = (await this._ShaderRepository.getPasswordById(id))[0].password;
 
-        if (CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64) === hashPassword) {
+        if (password === hashPassword) {
             isDeleted = await this._ShaderRepository.deleteDataById(id);
         }
 

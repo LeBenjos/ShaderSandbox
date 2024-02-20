@@ -1,4 +1,6 @@
 export enum TextContent {
+    NONE = "",
+
     H1_TITLE = "Shader Sandbox",
     BUTTON_GO_TO_SANDBOX = "Start Generation",
     BUTTON_GO_TO_LIBRARY = "Shader Library",
@@ -16,8 +18,13 @@ export enum TextContent {
     SANDBOX_INFORMATIONS_AUTHOR = "Author :",
     SANDBOX_INFORMATIONS_PASSWORD = "Password :",
 
-
-
+    SANDBOX_ERROR_CREATION = 'Error during creation, please check credentials',
+    SANDBOX_SUCCESS_CREATION = 'Shader created',
+    SANDBOX_ERROR_DELETE = 'Error during delete, please check the password',
+    SANDBOX_SUCCESS_DELETE = 'Shader deleted',
+    SANDBOX_ERROR_UPDATE = 'Error during update, please check the password',
+    SANDBOX_SUCCESS_UPDATE = 'Shader updated',
+    SANDBOX_NOT_FOUND = 'Shader not found',
 
     FOOTER_NAME = "© Benjamin SCHINKEL | 2024",
 }

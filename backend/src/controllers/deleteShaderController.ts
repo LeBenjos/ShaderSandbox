@@ -8,7 +8,7 @@ export default async function deleteShaderController(req: Request, res: Response
     try {
         const deletedData = await ShaderService.DeleteShaderById(Number(req.params.id), req.body.password);
         if (!deletedData) throw new CustomError(ErrorMessages.UNAUTHORIZED, HttpStatus.UNAUTHORIZED);
-        res.json(deletedData);
+        res.status(HttpStatus.ACCEPTED).json(deletedData);
     } catch (e: unknown) {
         next(e as CustomError);
     }

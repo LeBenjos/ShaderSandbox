@@ -1,5 +1,7 @@
 .libraryView {
     width: 100%;
+    min-height: 100svh;
+    position: relative;
 
     .libraryContainer {
         padding: 2vh;
@@ -9,5 +11,10 @@
         align-items: center;
         justify-content: center;
         gap: 2vh;
+    }
+
+    .footerSandbox {
+        position: absolute;
+        bottom: 0;
     }
 }

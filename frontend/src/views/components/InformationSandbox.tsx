@@ -1,18 +1,17 @@
 import { ChangeEvent, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
-import { Method } from "../../constants/Method.ts";
 import { TextContent } from "../../constants/texts/TextContent.ts";
 
 type Props = {
     title: string,
-    password: string,
     author: string,
     setTitle: React.Dispatch<React.SetStateAction<string>>,
     setAuthor: React.Dispatch<React.SetStateAction<string>>,
     setPassword: React.Dispatch<React.SetStateAction<string>>,
+    handleDelete: () => void,
 }
 
-export default function InformationSandbox({ title, password, author, setTitle, setAuthor, setPassword }: Props) {
+export default function InformationSandbox({ title, author, setTitle, setAuthor, setPassword, handleDelete }: Props) {
     const titleRef = useRef<HTMLInputElement>(null);
     const authorRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
@@ -31,21 +30,6 @@ export default function InformationSandbox({ title, password, author, setTitle, 
         setPassword((e.target as HTMLInputElement).value);
     }
 
-    const handleDelete = async (): Promise<void> => {
-        await fetch(`http://localhost:3000/shaders/${id}`, {
-            method: Method.DELETE,
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ password: password })
-        }).then(response => {
-            if (!response.ok) {
-                throw new Error('Erreur lors de la suppression');
-            }
-            console.log('Suppression réussie');
-        }).catch(error => console.error('Erreur :', error));
-    }
-
     useEffect(() => {
         if (!titleRef) return;
         if (!authorRef) return;
@@ -58,9 +42,9 @@ export default function InformationSandbox({ title, password, author, setTitle, 
     return <div className="informationSandbox">
         <div className="headerInformation">
             <h2 className="text-titleH3-blackBasic-uppercase">{TextContent.SANDBOX_INFORMATIONS}</h2>
-            {id && <button onClick={handleDelete} className="iconLink">
+            {id ? <button onClick={handleDelete} className="iconLink">
                 <img src="/assets/icons/trash.svg" alt="edit shader icon" />
-            </button>}
+            </button> : <></>}
         </div>
         <div className="information title">
             <label htmlFor="title" className="text-body-blackShade1-uppercase">{TextContent.SANDBOX_INFORMATIONS_TITLE}</label>

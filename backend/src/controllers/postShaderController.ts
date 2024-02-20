@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { HttpStatus } from "../constants/HttpStatus.ts";
 import SettingService from "../services/SettingService.ts";
 import ShaderService from "../services/ShaderService.ts";
 
@@ -10,7 +11,7 @@ export default async function postShaderController(req: Request, res: Response, 
             await SettingService.CreateSetting(creatSetting);
         }
 
-        res.json(createShaderData);
+        res.status(HttpStatus.CREATED).json(createShaderData);
     } catch (e: unknown) {
         next(e);
     }

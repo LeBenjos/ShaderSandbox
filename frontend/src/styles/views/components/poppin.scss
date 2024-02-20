@@ -1,0 +1,14 @@
+.poppin {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.errorPoppin {
+        background-color: tomato;
+    }
+
+    &.successPoppin {
+        background-color: forestgreen;
+    }
+}
