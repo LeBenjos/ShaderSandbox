@@ -27,8 +27,6 @@ export default class ShaderService {
             ));
         });
 
-        console.log(shaders)
-
         return shaders;
     }
     //
@@ -54,10 +52,6 @@ export default class ShaderService {
     //#region CREATE
     //
     public static async CreateShader(createdData: IShaderTable): Promise<number> {
-        // TODO : MOVE IN FRONT
-        // console.log(CryptoJS.SHA256('test').toString(CryptoJS.enc.Base64))
-        // createdData.password = CryptoJS.SHA256(createdData.password).toString(CryptoJS.enc.Base64);
-        // END TODO
         const isCreated = await this._ShaderRepository.createData(createdData);
         return isCreated;
     }

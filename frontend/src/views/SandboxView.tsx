@@ -26,6 +26,7 @@ export default function SandboxView(): ReactElement<HTMLDivElement> {
     const [password, setPassword] = useState<string>("");
     const [error, setError] = useState<TextContent>(TextContent.NONE);
     const [success, setSuccess] = useState<TextContent>(TextContent.NONE);
+    const [imageUrl, setImageUrl] = useState<string>("");
 
     const { id, status } = useParams();
 
@@ -85,7 +86,7 @@ export default function SandboxView(): ReactElement<HTMLDivElement> {
                 "createShader": {
                     "title": title,
                     "password": CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64),
-                    "image_url": "TODO",
+                    "image_url": imageUrl,
                     "author": author,
                     "setting": {
                         "s1": s1,
@@ -119,7 +120,7 @@ export default function SandboxView(): ReactElement<HTMLDivElement> {
                 "updateShader": {
                     "title": title,
                     "password": CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64),
-                    "image_url": "TODO",
+                    "image_url": imageUrl,
                     "author": author,
                     "setting": {
                         "s1": s1,
@@ -159,6 +160,10 @@ export default function SandboxView(): ReactElement<HTMLDivElement> {
         })
     }
 
+    const handlePDF = (): void => {
+        console.log(imageUrl)
+    }
+
     return <div className="sandboxView">
         <Header currentPage={PagePath.SANDBOX} />
         <div className="sandboxContainerMain">
@@ -166,10 +171,10 @@ export default function SandboxView(): ReactElement<HTMLDivElement> {
             {success !== TextContent.NONE && <Poppin text={success} className='successPoppin' />}
             <div className="sandboxContainer">
                 <SettingSandbox s1={s1} s2={s2} s3={s3} setS1={setS1} setS2={setS2} setS3={setS3} />
-                <ThreePreview s1={s1} s2={s2} s3={s3} />
+                <ThreePreview setImageUrl={setImageUrl} s1={s1} s2={s2} s3={s3} />
                 <InformationSandbox title={title} author={author} setTitle={setTitle} setAuthor={setAuthor} setPassword={setPassword} handleDelete={handleDelete} />
             </div>
-            <div>
+            <div className='sandboxOption'>
                 {id ?
                     <button onClick={handleUpdate} className="button text-small-blackShade1-uppercase">
                         {TextContent.BUTTON_UPDATE}
@@ -177,6 +182,9 @@ export default function SandboxView(): ReactElement<HTMLDivElement> {
                     <button onClick={handleCreate} className="button text-small-blackShade1-uppercase">
                         {TextContent.BUTTON_CREATE}
                     </button>}
+                <button onClick={handlePDF} className='button text-small-blackShade1-uppercase'>
+                    {TextContent.BUTTON_PDF}
+                </button>
             </div>
         </div>
         <Footer />

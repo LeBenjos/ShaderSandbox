@@ -10,32 +10,30 @@ export default function Library({ search }: { search: string }): ReactElement<HT
 
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                await fetch(`http://localhost:3000/shaders/`).then((response: Response) => {
-                    if (!response.ok) {
-                        throw new Error('Error retrieving data');
-                    }
-                    return response.json();
-                }).then((data: DataType[]) => {
-                    const clearData: Shader[] = [];
+            await fetch(`http://localhost:3000/shaders/`).then((response: Response) => {
+                if (!response.ok) {
+                    throw new Error('Error retrieving data');
+                }
+                return response.json();
+            }).then((data: DataType[]) => {
+                const clearData: Shader[] = [];
 
-                    data.forEach((shader: DataType) => {
-                        clearData.push(new Shader(
-                            shader._id,
-                            shader._title,
-                            shader._image_url,
-                            shader._author,
-                            shader._setting,
-                        ))
-                    });
-
-                    setShader(clearData);
-                    setFetchedData(clearData);
+                data.forEach((shader: DataType) => {
+                    clearData.push(new Shader(
+                        shader._id,
+                        shader._title,
+                        shader._image_url,
+                        shader._author,
+                        shader._setting,
+                    ))
                 });
-            } catch (error) {
+
+                setShader(clearData);
+                setFetchedData(clearData);
+            }).catch((error) => {
                 console.error('Erreur:', error);
-            }
-        };
+            })
+        }
 
         fetchData();
     }, []);

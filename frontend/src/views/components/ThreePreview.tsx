@@ -5,9 +5,10 @@ type Props = HTMLAttributes<HTMLDivElement> & {
     s1: number,
     s2: number,
     s3: number,
+    setImageUrl: React.Dispatch<React.SetStateAction<string>>
 }
 
-export default function ThreePreview({ s1, s2, s3 }: Props): ReactElement<HTMLDivElement> {
+export default function ThreePreview({ s1, s2, s3, setImageUrl }: Props): ReactElement<HTMLDivElement> {
 
     useEffect(() => {
         const scene = new THREE.Scene();
@@ -17,7 +18,7 @@ export default function ThreePreview({ s1, s2, s3 }: Props): ReactElement<HTMLDi
         renderer.setSize(window.innerWidth * 0.3, window.innerHeight * 0.3);
         document.getElementById('webgl')!.appendChild(renderer.domElement);
 
-        const geometry = new THREE.PlaneGeometry(1, 1, 32, 32);
+        const geometry = new THREE.PlaneGeometry(1.5, 1.5, 32, 32);
         const material = new THREE.ShaderMaterial({
             uniforms: {
                 uS1: { value: s1 * 0.01 },
@@ -113,6 +114,9 @@ export default function ThreePreview({ s1, s2, s3 }: Props): ReactElement<HTMLDi
             requestAnimationFrame(animate);
 
             renderer.render(scene, camera);
+
+            const imgData = renderer.domElement.toDataURL('image/jpeg');
+            setImageUrl(imgData)
         }
 
         animate();

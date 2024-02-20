@@ -11,7 +11,7 @@ type Props = HTMLAttributes<HTMLDivElement> & {
 export default function ShaderCard({ shader }: Props): ReactElement<HTMLDivElement> {
 
     return <div className="libraryCard">
-        <img src="/assets/images/defaultPoster.png" alt="shader image" />
+        <img src={shader.image_url} alt="shader image" />
         <div className="cardFooter">
             <h2 className="text-titleH4-blackShade1">{shader.title}</h2>
             <p className="text-small-blackShade2">{TextContent.BY} {shader.author}</p>

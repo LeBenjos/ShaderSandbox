@@ -1,3 +1,4 @@
+import bodyParser from 'body-parser';
 import cors from "cors";
 import 'dotenv/config';
 import express, { Application } from 'express';
@@ -9,7 +10,9 @@ import router from './routes/route.ts';
 const app: Application = express();
 const port = process.env.PORT || 3000;
 
-app.use(express.json());
+// app.use(express.json());
+app.use(bodyParser.json({ limit: '200mb' }));
+app.use(bodyParser.urlencoded({ limit: '200mb', extended: true }));
 app.use(cors({
     origin: process.env.CLIENT_ORIGIN
 }));

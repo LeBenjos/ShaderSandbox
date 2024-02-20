@@ -6,6 +6,7 @@ export enum TextContent {
     BUTTON_GO_TO_LIBRARY = "Shader Library",
     BUTTON_UPDATE = "Edit",
     BUTTON_CREATE = "Send",
+    BUTTON_PDF = 'Get PDF',
     SEARCHBAR_PLACEHOLDER = "Find a shader with name...",
     BY = "By",
     SANDBOX_SETTING = "Settings",

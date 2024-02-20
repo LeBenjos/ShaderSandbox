@@ -1,34 +1,11 @@
 # ShaderSandbox
 
 TODO:
-- [ ] Shader Img
-- [ ] Deploy backend
+- [ ] Fix ThreeJs Leak memory
 - [ ] PDF
+- [ ] Deploy backend
 - [ ] Doc
-
-## Frontend :
-https://shader-sandbox-frontend.vercel.app/
-
-### Dépendances :
-- Vite
-- Typescript
-- React
-- Three
-
-## Backend :
-
-### Dépendances :
-- Typescript
-- Express
 
 ## Devlog
 
-### Mardi 13/02
-- Maquette Figma
-
-### Samedi 17/02
-- Initialisation du mono-repo git
-- Initialisation des app frontend & backend
-- Création du CI/CD frontend (inutile car vercel s'en occupe déjà 🙃)
-
-
+- TODO
