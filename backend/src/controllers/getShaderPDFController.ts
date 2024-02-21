@@ -88,7 +88,7 @@ export default async function getShaderPDFController(req: Request, res: Response
             gl_FragColor = vec4(vec3(mixedColor), 1.0);
         }`);
 
-        const filePath = path.join(__dirname, '..', 'pdf', 'temp.pdf');
+        const filePath = path.join('/tmp/temp.pdf');
         const stream = fs.createWriteStream(filePath);
         doc.pipe(stream);
         doc.end();

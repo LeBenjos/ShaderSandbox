@@ -161,8 +161,11 @@ export default function SandboxView(): ReactElement<HTMLDivElement> {
     }
 
     const handlePDF = async (): Promise<void> => {
-        fetch(import.meta.env.VITE_PUBLIC_API_URL + `${id}/pdf`)
+        fetch(import.meta.env.VITE_PUBLIC_API_URL + `${id}/pdf`, {
+            mode: 'no-cors',
+        })
             .then((response: Response) => {
+                console.log(response)
                 if (!response.ok) {
                     throw new Error(TextContent.SANDBOX_ERROR_PDF);
                 }
