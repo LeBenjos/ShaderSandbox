@@ -1,4 +1,4 @@
-import { HTMLAttributes, ReactElement, useEffect } from 'react';
+import { HTMLAttributes, ReactElement, useEffect, useState } from 'react';
 import * as THREE from 'three';
 
 type Props = HTMLAttributes<HTMLDivElement> & {
@@ -10,16 +10,24 @@ type Props = HTMLAttributes<HTMLDivElement> & {
 
 export default function ThreePreview({ s1, s2, s3, setImageUrl }: Props): ReactElement<HTMLDivElement> {
 
-    useEffect(() => {
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const [renderer, setRenderer] = useState<THREE.WebGLRenderer>()
+    const [scene, setScene] = useState<THREE.Scene>()
+    const [camera, setCamera] = useState<THREE.PerspectiveCamera>()
+    const [material, setMaterial] = useState<THREE.ShaderMaterial>()
 
-        const renderer = new THREE.WebGLRenderer({ alpha: true });
-        renderer.setSize(window.innerWidth * 0.3, window.innerHeight * 0.3);
-        document.getElementById('webgl')!.appendChild(renderer.domElement);
+    useEffect(() => {
+        const sceneInstance = new THREE.Scene();
+        const cameraInstance = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+        const rendererInstance = new THREE.WebGLRenderer({ alpha: true });
+        rendererInstance.setSize(window.innerWidth * 0.3, window.innerHeight * 0.3);
+        setRenderer(rendererInstance);
+        setScene(sceneInstance);
+        setCamera(cameraInstance);
+        document.getElementById('webgl')!.appendChild(rendererInstance.domElement);
 
         const geometry = new THREE.PlaneGeometry(1.5, 1.5, 32, 32);
-        const material = new THREE.ShaderMaterial({
+        const materialT = new THREE.ShaderMaterial({
             uniforms: {
                 uS1: { value: s1 * 0.01 },
                 uS2: { value: s2 * 0.1 },
@@ -30,7 +38,7 @@ export default function ThreePreview({ s1, s2, s3, setImageUrl }: Props): ReactE
             uniform float uS1;
             uniform float uS2;
             uniform float uS3;
-
+    
             void main()
             {
                 gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
@@ -42,19 +50,19 @@ export default function ThreePreview({ s1, s2, s3, setImageUrl }: Props): ReactE
             uniform float uS1;
             uniform float uS2;
             uniform float uS3;
-
+    
             //#region Classic Perlin 2D Noise by Stefan Gustavson
             //
             vec2 fade(vec2 t)
             {
                 return t*t*t*(t*(t*6.0-15.0)+10.0);
             }
-
+    
             vec4 permute(vec4 x)
             {
                 return mod(((x*34.0)+1.0)*x, 289.0);
             }
-
+    
             float cnoise(vec2 P)
             {
                 vec4 Pi = floor(P.xyxy) + vec4(0.0, 0.0, 1.0, 1.0);
@@ -89,7 +97,7 @@ export default function ThreePreview({ s1, s2, s3, setImageUrl }: Props): ReactE
             }
             //
             //#endregion
-
+    
             void main()
             {
                 // s1 & s2 & s3
@@ -98,36 +106,52 @@ export default function ThreePreview({ s1, s2, s3, setImageUrl }: Props): ReactE
                 vec3 blackColor = vec3(0.98);
                 vec3 uvColor = vec3(vUv, 1.0);
                 vec3 mixedColor = mix(blackColor, uvColor, strength);
-
-
+    
+    
                 gl_FragColor = vec4(vec3(mixedColor), 1.0);
             }
             `,
             side: THREE.FrontSide
-        })
-        const plane = new THREE.Mesh(geometry, material);
-        scene.add(plane);
+        });
+        setMaterial(materialT);
 
-        camera.position.z = 0.5;
+        const plane = new THREE.Mesh(geometry, materialT);
+        sceneInstance.add(plane);
 
-        function animate() {
-            requestAnimationFrame(animate);
+        cameraInstance.position.z = 0.5;
 
-            renderer.render(scene, camera);
+        return () => {
+            rendererInstance.domElement.remove();
+            sceneInstance.remove(plane);
+            geometry.dispose();
+            materialT.dispose();
+        };
+    }, [])
 
-            const imgData = renderer.domElement.toDataURL('image/jpeg');
+    useEffect(() => {
+        if (!renderer || !scene || !camera || !material) return
+
+        let animationFrameId: number;
+
+        const animate = (): void => {
+            animationFrameId = requestAnimationFrame(animate);
+
+            material!.uniforms.uS1.value = s1 * 0.01;
+            material!.uniforms.uS2.value = s2 * 0.1;
+            material!.uniforms.uS3.value = s3;
+
+            renderer!.render(scene!, camera!);
+
+            const imgData = renderer!.domElement.toDataURL('image/jpeg');
             setImageUrl(imgData)
         }
 
         animate();
 
         return () => {
-            renderer.domElement.remove();
-            scene.remove(plane);
-            geometry.dispose();
-            material.dispose();
+            cancelAnimationFrame(animationFrameId);
         };
-    }, [s1, s2, s3]);
+    }, [s1, s2, s3, renderer]);
 
     return <div id="webgl"></div>
 }
