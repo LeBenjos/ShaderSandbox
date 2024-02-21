@@ -1,0 +1,11 @@
+{
+    "version": 2,
+    "name": "shader-sandbox-frontend",
+    "routes": [
+        {
+            "src": "/[^.]+",
+            "dest": "/",
+            "status": 200
+        }
+    ]
+}
