@@ -1,8 +1,5 @@
 # ShaderSandbox
 
-TODO:
-- [ ] Fix Download PDF in PROD
-
 Bienvenue sur ShaderSandbox, un projet réalisé pendant une période de 4 jours dans le cadre de deux projets à HETIC.
 
 **Les consignes étaient les suivantes :**
