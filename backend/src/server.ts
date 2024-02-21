@@ -17,11 +17,8 @@ app.use(cors({
     origin: process.env.CLIENT_ORIGIN
 }));
 app.use((req, res, next) => {
-    // Autoriser l'accès depuis toutes les origines
     res.header('Access-Control-Allow-Origin', '*');
-    // Autoriser les méthodes HTTP spécifiques
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    // Autoriser les en-têtes spécifiques
     res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
     next();
 });

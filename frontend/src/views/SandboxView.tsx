@@ -27,6 +27,7 @@ export default function SandboxView(): ReactElement<HTMLDivElement> {
     const [error, setError] = useState<TextContent>(TextContent.NONE);
     const [success, setSuccess] = useState<TextContent>(TextContent.NONE);
     const [imageUrl, setImageUrl] = useState<string>("");
+    const [canSend, setCanSend] = useState<boolean>(true);
 
     const { id, status } = useParams();
 
@@ -77,6 +78,8 @@ export default function SandboxView(): ReactElement<HTMLDivElement> {
     }, []);
 
     const handleCreate = async (): Promise<void> => {
+        if (!canSend) return;
+        setCanSend(false);
         await fetch(import.meta.env.VITE_PUBLIC_API_URL, {
             method: Method.POST,
             headers: {
@@ -103,14 +106,18 @@ export default function SandboxView(): ReactElement<HTMLDivElement> {
             }
         }).then((data: number) => {
             document.location.href = import.meta.env.VITE_PUBLIC_FRONTEND_URL + `${data}/${StatusId.CREATED}`;
+            setCanSend(true);
         }).catch((error) => {
             console.log()
             setSuccess(TextContent.NONE);
             setError(error.message);
+            setCanSend(true);
         })
     }
 
     const handleUpdate = async (): Promise<void> => {
+        if (!canSend) return;
+        setCanSend(false);
         await fetch(import.meta.env.VITE_PUBLIC_API_URL + id, {
             method: Method.PUT,
             headers: {
@@ -135,14 +142,18 @@ export default function SandboxView(): ReactElement<HTMLDivElement> {
             } else {
                 setError(TextContent.NONE);
                 setSuccess(TextContent.SANDBOX_SUCCESS_UPDATE);
+                setCanSend(true);
             }
         }).catch((error) => {
             setSuccess(TextContent.NONE);
             setError(error.message);
+            setCanSend(true);
         })
     }
 
     const handleDelete = async (): Promise<void> => {
+        if (!canSend) return;
+        setCanSend(false);
         await fetch(import.meta.env.VITE_PUBLIC_API_URL + id, {
             method: Method.DELETE,
             headers: {
@@ -157,10 +168,13 @@ export default function SandboxView(): ReactElement<HTMLDivElement> {
         }).catch((error) => {
             setSuccess(TextContent.NONE);
             setError(error.message);
+            setCanSend(true);
         })
     }
 
     const handlePDF = async (): Promise<void> => {
+        if (!canSend) return;
+        setCanSend(false);
         fetch(import.meta.env.VITE_PUBLIC_API_URL + `${id}/pdf`, {
             mode: 'no-cors',
         })
@@ -180,9 +194,11 @@ export default function SandboxView(): ReactElement<HTMLDivElement> {
                 document.body.removeChild(link);
                 setError(TextContent.NONE);
                 setSuccess(TextContent.SANDBOX_SUCCESS_PDF);
+                setCanSend(true);
             }).catch((error) => {
                 setSuccess(TextContent.NONE);
                 setError(error.message);
+                setCanSend(true);
             });
     }
 
