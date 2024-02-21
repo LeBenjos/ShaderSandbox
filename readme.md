@@ -2,8 +2,6 @@
 
 TODO:
 - [ ] Fix redirection
-- [ ] Deploy in my website
-- [ ] Doc Frontend + Doc Frontend
 
 Bienvenue sur ShaderSandbox, un projet réalisé pendant une période de 4 jours dans le cadre de deux projets à HETIC.
 
@@ -97,3 +95,7 @@ Docker compose up
 ### Mercredi - 21/02
 - Documentation.
 - Déploiement du backend.
+
+## Crédits
+
+[LeBenjos](https://github.com/LeBenjos) 
