@@ -1,5 +1,5 @@
-import { ErrorMessages } from "../constants/ErrorMessages.ts";
-import { HttpStatus } from "../constants/HttpStatus.ts";
+import { ErrorMessages } from "../constants/ErrorMessages";
+import { HttpStatus } from "../constants/HttpStatus";
 
 export default class CustomError extends Error {
     public readonly statusCode: HttpStatus;

@@ -2,10 +2,10 @@ import bodyParser from 'body-parser';
 import cors from "cors";
 import 'dotenv/config';
 import express, { Application } from 'express';
-import credentialValidationMiddleware from './middlewares/credentialValidationMiddleware.ts';
-import idValidationMiddleware from './middlewares/idValidationMiddleware.ts';
-import serverCheckMiddleware from './middlewares/serverCheckMiddleware.ts';
-import router from './routes/route.ts';
+import credentialValidationMiddleware from './middlewares/credentialValidationMiddleware';
+import idValidationMiddleware from './middlewares/idValidationMiddleware';
+import serverCheckMiddleware from './middlewares/serverCheckMiddleware';
+import router from './routes/route';
 
 const app: Application = express();
 const port = process.env.PORT || 3000;

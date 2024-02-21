@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import CustomError from "../components/CustomeError.ts";
+import CustomError from "../components/CustomeError";
 
 const errorMiddleware = (err: CustomError, req: Request, res: Response, next: NextFunction): void => {
     res.status(err.statusCode).json(err.message);

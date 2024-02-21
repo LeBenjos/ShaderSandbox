@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import CustomError from "../components/CustomeError.ts";
-import { ErrorMessages } from "../constants/ErrorMessages.ts";
-import { HttpStatus } from "../constants/HttpStatus.ts";
-import ShaderService from "../services/ShaderService.ts";
+import CustomError from "../components/CustomeError";
+import { ErrorMessages } from "../constants/ErrorMessages";
+import { HttpStatus } from "../constants/HttpStatus";
+import ShaderService from "../services/ShaderService";
 
 export default async function deleteShaderController(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {

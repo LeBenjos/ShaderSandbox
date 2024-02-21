@@ -1,6 +1,6 @@
-import { db } from "../configs/databases/database.config.ts";
-import { TableName } from "../constants/TableName.ts";
-import { IDatabase, IShaderTable } from "../constants/Types/DatabaseInterface.ts";
+import { db } from "../configs/databases/database.config";
+import { TableName } from "../constants/TableName";
+import { IDatabase, IShaderTable } from "../constants/Types/DatabaseInterface";
 
 export default class ShaderRepository<T extends keyof IDatabase> {
     private _type = TableName.SHADER;

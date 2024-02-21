@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import CustomError from "../components/CustomeError.ts";
-import { db } from "../configs/databases/database.config.ts";
-import { ErrorMessages } from "../constants/ErrorMessages.ts";
-import { HttpStatus } from "../constants/HttpStatus.ts";
+import CustomError from "../components/CustomeError";
+import { db } from "../configs/databases/database.config";
+import { ErrorMessages } from "../constants/ErrorMessages";
+import { HttpStatus } from "../constants/HttpStatus";
 
 const serverCheckMiddleware = (req: Request, res: Response, next: NextFunction): void => {
     try {

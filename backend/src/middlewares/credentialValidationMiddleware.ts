@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import CustomError from "../components/CustomeError.ts";
-import { ErrorMessages } from "../constants/ErrorMessages.ts";
-import { HttpStatus } from "../constants/HttpStatus.ts";
-import { MethodName } from "../constants/MethodName.ts";
+import CustomError from "../components/CustomeError";
+import { ErrorMessages } from "../constants/ErrorMessages";
+import { HttpStatus } from "../constants/HttpStatus";
+import { MethodName } from "../constants/MethodName";
 
 
 export default async function credentialValidationMiddleware(req: Request, res: Response, next: NextFunction): Promise<void> {

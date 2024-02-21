@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { Kysely, PostgresDialect } from 'kysely';
 import { Pool } from 'pg';
-import { IDatabase } from '../../constants/Types/DatabaseInterface.ts';
+import { IDatabase } from '../../constants/Types/DatabaseInterface';
 
 export const db = new Kysely<IDatabase>({
     dialect: new PostgresDialect({

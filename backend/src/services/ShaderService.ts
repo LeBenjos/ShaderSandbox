@@ -1,7 +1,7 @@
-import CustomError from "../components/CustomeError.ts";
-import { IShaderTable } from "../constants/Types/DatabaseInterface.ts";
-import Shader from "../models/Shader.ts";
-import ShaderRepository from "../repositories/ShaderRepository.ts";
+import CustomError from "../components/CustomeError";
+import { IShaderTable } from "../constants/Types/DatabaseInterface";
+import Shader from "../models/Shader";
+import ShaderRepository from "../repositories/ShaderRepository";
 
 export default class ShaderService {
     private static _ShaderRepository = new ShaderRepository();

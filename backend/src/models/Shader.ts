@@ -1,4 +1,4 @@
-import Setting from "./Setting.ts";
+import Setting from "./Setting";
 
 export default class Shader {
     private readonly _id: number;

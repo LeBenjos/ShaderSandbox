@@ -1,11 +1,11 @@
 import express, { Router } from "express";
-import deleteShaderController from "../controllers/deleteShaderController.ts";
-import getShaderController from "../controllers/getShaderController.ts";
-import getShaderPDFController from "../controllers/getShaderPDFController.ts";
-import postShaderController from "../controllers/postShaderController.ts";
-import selectShadersController from "../controllers/selectShadersController.ts";
-import updateShaderController from "../controllers/updateShaderController.ts";
-import welcom from "../controllers/welcom.ts";
+import deleteShaderController from "../controllers/deleteShaderController";
+import getShaderController from "../controllers/getShaderController";
+import getShaderPDFController from "../controllers/getShaderPDFController";
+import postShaderController from "../controllers/postShaderController";
+import selectShadersController from "../controllers/selectShadersController";
+import updateShaderController from "../controllers/updateShaderController";
+import welcom from "../controllers/welcom";
 
 const router: Router = express.Router();
 

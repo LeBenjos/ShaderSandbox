@@ -1,7 +1,7 @@
-import { ISettingTable } from "../constants/Types/DatabaseInterface.ts";
-import Setting from "../models/Setting.ts";
-import Shader from "../models/Shader.ts";
-import SettingRepository from "../repositories/SettingRepository.ts";
+import { ISettingTable } from "../constants/Types/DatabaseInterface";
+import Setting from "../models/Setting";
+import Shader from "../models/Shader";
+import SettingRepository from "../repositories/SettingRepository";
 
 export default class SettingService {
     private static _SettingRepository = new SettingRepository();

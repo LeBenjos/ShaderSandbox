@@ -1,6 +1,6 @@
-import { db } from "../configs/databases/database.config.ts";
-import { TableName } from "../constants/TableName.ts";
-import { IDatabase, ISettingTable } from "../constants/Types/DatabaseInterface.ts";
+import { db } from "../configs/databases/database.config";
+import { TableName } from "../constants/TableName";
+import { IDatabase, ISettingTable } from "../constants/Types/DatabaseInterface";
 
 export default class SettingRepository<T extends keyof IDatabase> {
     private _type = TableName.SETTING;

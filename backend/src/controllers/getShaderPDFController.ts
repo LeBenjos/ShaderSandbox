@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express";
-import CustomError from "../components/CustomeError.ts";
-import { ErrorMessages } from "../constants/ErrorMessages.ts";
-import { HttpStatus } from "../constants/HttpStatus.ts";
-import Shader from "../models/Shader.ts";
-import SettingService from "../services/SettingService.ts";
-import ShaderService from "../services/ShaderService.ts";
+import CustomError from "../components/CustomeError";
+import { ErrorMessages } from "../constants/ErrorMessages";
+import { HttpStatus } from "../constants/HttpStatus";
+import Shader from "../models/Shader";
+import SettingService from "../services/SettingService";
+import ShaderService from "../services/ShaderService";
 
 import fs from 'fs';
 import path from 'path';
