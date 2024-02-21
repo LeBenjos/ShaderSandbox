@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "api-recipe-forge",
+    "name": "shader-sandbox-backend",
     "builds": [
         {
             "src": "src/server.ts",
