@@ -1,9 +1,8 @@
 # ShaderSandbox
 
+## Deploy : https://shader-sandbox-frontend.vercel.app/
+
 TODO:
-- [ ] Fix ThreeJs Leak memory
-- [ ] PDF
-- [ ] Deploy backend
 - [ ] Doc
 
 ## Devlog
