@@ -33,7 +33,7 @@ export default function SandboxView(): ReactElement<HTMLDivElement> {
     useEffect(() => {
         const fetchData = async () => {
             if (id && Number(id) !== 0) {
-                await fetch(`http://localhost:3000/shaders/${id}`)
+                await fetch(import.meta.env.VITE_PUBLIC_API_URL + id)
                     .then((response: Response) => {
                         return response.json();
                     })
@@ -56,7 +56,7 @@ export default function SandboxView(): ReactElement<HTMLDivElement> {
                         setTitle(clearData.title);
                         setAuthor(clearData.author);
                     }).catch(() => {
-                        document.location.href = `http://localhost:5173/sandbox/0/${StatusId.NOT_FOUND}`;
+                        document.location.href = import.meta.env.VITE_PUBLIC_FRONTEND_URL + `0/${StatusId.NOT_FOUND}`;
                     })
             }
 
@@ -77,7 +77,7 @@ export default function SandboxView(): ReactElement<HTMLDivElement> {
     }, []);
 
     const handleCreate = async (): Promise<void> => {
-        await fetch(`http://localhost:3000/shaders/`, {
+        await fetch(import.meta.env.VITE_PUBLIC_API_URL, {
             method: Method.POST,
             headers: {
                 'Content-Type': 'application/json'
@@ -102,7 +102,7 @@ export default function SandboxView(): ReactElement<HTMLDivElement> {
                 return response.json();
             }
         }).then((data: number) => {
-            document.location.href = `http://localhost:5173/sandbox/${data}/${StatusId.CREATED}`;
+            document.location.href = import.meta.env.VITE_PUBLIC_FRONTEND_URL + `${data}/${StatusId.CREATED}`;
         }).catch((error) => {
             console.log()
             setSuccess(TextContent.NONE);
@@ -111,7 +111,7 @@ export default function SandboxView(): ReactElement<HTMLDivElement> {
     }
 
     const handleUpdate = async (): Promise<void> => {
-        await fetch(`http://localhost:3000/shaders/${id}`, {
+        await fetch(import.meta.env.VITE_PUBLIC_API_URL + id, {
             method: Method.PUT,
             headers: {
                 'Content-Type': 'application/json'
@@ -143,7 +143,7 @@ export default function SandboxView(): ReactElement<HTMLDivElement> {
     }
 
     const handleDelete = async (): Promise<void> => {
-        await fetch(`http://localhost:3000/shaders/${id}`, {
+        await fetch(import.meta.env.VITE_PUBLIC_API_URL + id, {
             method: Method.DELETE,
             headers: {
                 'Content-Type': 'application/json'
@@ -153,15 +153,34 @@ export default function SandboxView(): ReactElement<HTMLDivElement> {
             if (response.status !== HttpStatus.ACCEPTED) {
                 throw new Error(TextContent.SANDBOX_ERROR_DELETE);
             }
-            document.location.href = `http://localhost:5173/sandbox/0/${StatusId.DELETED}`;
+            document.location.href = import.meta.env.VITE_PUBLIC_FRONTEND_URL + `0/${StatusId.DELETED}`;
         }).catch((error) => {
             setSuccess(TextContent.NONE);
             setError(error.message);
         })
     }
 
-    const handlePDF = (): void => {
-        console.log(imageUrl)
+    const handlePDF = async (): Promise<void> => {
+        fetch(import.meta.env.VITE_PUBLIC_API_URL + `${id}/pdf`)
+            .then((response: Response) => {
+                if (!response.ok) {
+                    throw new Error(TextContent.SANDBOX_ERROR_PDF);
+                }
+                return response.blob();
+            }).then((data: Blob) => {
+                const url = window.URL.createObjectURL(data);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'document.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                setError(TextContent.NONE);
+                setSuccess(TextContent.SANDBOX_SUCCESS_PDF);
+            }).catch((error) => {
+                setSuccess(TextContent.NONE);
+                setError(error.message);
+            });
     }
 
     return <div className="sandboxView">
@@ -175,16 +194,18 @@ export default function SandboxView(): ReactElement<HTMLDivElement> {
                 <InformationSandbox title={title} author={author} setTitle={setTitle} setAuthor={setAuthor} setPassword={setPassword} handleDelete={handleDelete} />
             </div>
             <div className='sandboxOption'>
-                {id ?
-                    <button onClick={handleUpdate} className="button text-small-blackShade1-uppercase">
-                        {TextContent.BUTTON_UPDATE}
-                    </button> :
+                {id && Number(id) !== 0 ?
+                    <>
+                        <button onClick={handleUpdate} className="button text-small-blackShade1-uppercase">
+                            {TextContent.BUTTON_UPDATE}
+                        </button>
+                        <button onClick={handlePDF} className='button text-small-blackShade1-uppercase'>
+                            {TextContent.BUTTON_PDF}
+                        </button>
+                    </> :
                     <button onClick={handleCreate} className="button text-small-blackShade1-uppercase">
                         {TextContent.BUTTON_CREATE}
                     </button>}
-                <button onClick={handlePDF} className='button text-small-blackShade1-uppercase'>
-                    {TextContent.BUTTON_PDF}
-                </button>
             </div>
         </div>
         <Footer />

@@ -143,7 +143,7 @@ export default function ThreePreview({ s1, s2, s3, setImageUrl }: Props): ReactE
             renderer!.render(scene!, camera!);
 
             const imgData = renderer!.domElement.toDataURL('image/jpeg');
-            setImageUrl(imgData)
+            setImageUrl(imgData);
         }
 
         animate();
@@ -151,7 +151,7 @@ export default function ThreePreview({ s1, s2, s3, setImageUrl }: Props): ReactE
         return () => {
             cancelAnimationFrame(animationFrameId);
         };
-    }, [s1, s2, s3, renderer]);
+    }, [s1, s2, s3, renderer, scene, camera, material]);
 
     return <div id="webgl"></div>
 }

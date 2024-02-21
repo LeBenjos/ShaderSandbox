@@ -26,6 +26,8 @@ export enum TextContent {
     SANDBOX_ERROR_UPDATE = 'Error during update, please check the password',
     SANDBOX_SUCCESS_UPDATE = 'Shader updated',
     SANDBOX_NOT_FOUND = 'Shader not found',
+    SANDBOX_ERROR_PDF = 'Error during download, please try again later',
+    SANDBOX_SUCCESS_PDF = 'PDF downloaded',
 
     FOOTER_NAME = "© Benjamin SCHINKEL | 2024",
 }
