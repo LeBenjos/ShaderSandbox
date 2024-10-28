@@ -1,9 +1,9 @@
 # SanderSandbox Backend
 
 Bienvenue sur l'API de [ShaderSandbox](https://github.com/LeBenjos/ShaderSandbox).  
-C'est une API Node utilisant Express et Kysely. Le code a été réalisé en Typescript. L'application est reliée à une base de données PostgreSQL hébergée sur [ElephantSQL](https://www.elephantsql.com/).
+C'est une API Node utilisant Express et Kysely. Le code a été réalisé en Typescript. L'application est reliée à une base de données PostgreSQL hébergée sur [Supabase](https://supabase.com/).
 
-L'application est déployé sur [Vercel](https://shader-sandbox-iota.vercel.app/) et utilisé via un [frontend](../frontend/README.md).
+L'application est déployé sur mon [portfolio](https://benjaminschinkel.com/) et utilisé via un [frontend](../frontend/README.md).
 
 ## Technologies :
 
@@ -11,7 +11,7 @@ L'application est déployé sur [Vercel](https://shader-sandbox-iota.vercel.app/
 ![backend](https://skillicons.dev/icons?i=nodejs,express)
 
 ### Base de données :
-![database](https://skillicons.dev/icons?i=postgres)
+![database](https://skillicons.dev/icons?i=postgres,supabase)
 
 
 ## Routes
