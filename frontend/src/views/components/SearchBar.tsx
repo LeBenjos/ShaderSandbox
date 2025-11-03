@@ -9,7 +9,7 @@ export default function SearchBar({ setSearch }: { setSearch: React.Dispatch<Rea
 
     return <div className="searchBarLibrary">
         <div className="searchBarContainer">
-            <img src="/assets/icons/zoom.svg" alt="zoom" />
+            <img src="./assets/icons/zoom.svg" alt="zoom" />
             <input className="searchBarInput text-small-blackBasic" type="text" placeholder={TextContent.SEARCHBAR_PLACEHOLDER} onChange={handleChange} />
         </div>
     </div>

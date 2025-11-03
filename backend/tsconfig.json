@@ -11,9 +11,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "allowJs": true,
-    "strict": true,
-    "noEmit": true,
-    "allowImportingTsExtensions": true,
+    "strict": true
   },
   "include": [
     "src"
@@ -21,8 +19,5 @@
   "exclude": [
     "node_modules",
     "dist/*"
-  ],
-  "lib": [
-    "es6"
   ]
 }
