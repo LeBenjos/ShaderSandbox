@@ -7,5 +7,10 @@
             "dest": "/",
             "status": 200
         }
-    ]
+    ],
+    "functions": {
+        "src/server.ts": {
+            "runtime": "nodejs20.x"
+        }
+    }
 }
