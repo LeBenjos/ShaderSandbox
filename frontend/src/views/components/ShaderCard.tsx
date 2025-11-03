@@ -16,7 +16,7 @@ export default function ShaderCard({ shader }: Props): ReactElement<HTMLDivEleme
             <h2 className="text-titleH4-blackShade1">{shader.title}</h2>
             <p className="text-small-blackShade2">{TextContent.BY} <span className="text-extraBold">{shader.author}</span></p>
             <Link to={`${PagePath.SANDBOX}${shader.id}`} className="iconLink" >
-                <img src="/assets/icons/editIcon.svg" alt="edit shader icon" />
+                <img src="./assets/icons/editIcon.svg" alt="edit shader icon" />
             </Link>
         </div>
     </div>

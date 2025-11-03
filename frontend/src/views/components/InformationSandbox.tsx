@@ -43,7 +43,7 @@ export default function InformationSandbox({ title, author, setTitle, setAuthor,
         <div className="headerInformation">
             <h2 className="text-titleH3-blackBasic-uppercase">{TextContent.SANDBOX_INFORMATIONS}</h2>
             {id && Number(id) !== 0 ? <button onClick={handleDelete} className="iconLink">
-                <img src="/assets/icons/trash.svg" alt="edit shader icon" />
+                <img src="./assets/icons/trash.svg" alt="edit shader icon" />
             </button> : <></>}
         </div>
         <div className="information title">
